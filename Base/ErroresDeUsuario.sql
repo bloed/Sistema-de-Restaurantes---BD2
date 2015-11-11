@@ -33,5 +33,15 @@ exec sp_addmessage  @msgnum=50006,
 					@msgtext='Nombre de ingrediente no existe. Asegurese de escribirlo bien.',
 					@replace='replace',
 					@lang = 'us_english'
+exec sp_addmessage  @msgnum=50007,
+					@severity=16,
+					@msgtext='Username de administrador repetido. Escoger otro.',
+					@replace='replace',
+					@lang = 'us_english'
+exec sp_addmessage  @msgnum=50007,
+					@severity=16,
+					@msgtext='Username de administrador no encontrado. Asegurese de escribirlo bien.',
+					@replace='replace',
+					@lang = 'us_english'
 
 select * from sys.messages where message_id > 50000--para ver los user defined messages
