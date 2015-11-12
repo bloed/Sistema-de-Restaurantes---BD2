@@ -53,5 +53,10 @@ exec sp_addmessage  @msgnum=50010,
 					@msgtext='Correo de cliente no encontrado. Asegurese de escribirlo bien.',
 					@replace='replace',
 					@lang = 'us_english'
+exec sp_addmessage  @msgnum=50011,
+					@severity=16,
+					@msgtext='Restaurante no encontrado. Asegurese de escribirlo bien',
+					@replace='replace',
+					@lang = 'us_english'
 
 select * from sys.messages where message_id > 50000--para ver los user defined messages
