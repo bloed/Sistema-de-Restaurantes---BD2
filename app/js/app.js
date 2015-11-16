@@ -12,6 +12,15 @@ App.config(['$routeProvider',
   function($routeProvider) {
     $routeProvider.
       when('/index', {
+        resolve:{
+          "check":function($rootScope){
+            if($rootScope.isAdmin){
+              $rootScope.isAdmin = false;
+            }else{
+              $rootScope.isAdmin = false;
+            }
+          }
+        },
         /*resolve:{
           "check":function($rootScope,$cookies){
             if($cookies.get('login')!='')
@@ -29,18 +38,39 @@ App.config(['$routeProvider',
         templateUrl: 'app/Html/index.html',
         controller: 'IndexCtrl'
       }).
-      /*when('/login', {
-        templateUrl: 'app/partials/login.html',
+      when('/register', {
+        templateUrl: 'app/Html/register.html',
+        controller: 'RegisterCtrl'
+      }).
+      when('/login', {
+        templateUrl: 'app/Html/login.html',
         controller: 'loginCtrl'
       }).
-      when('/resenas', {
-        templateUrl: 'app/partials/resenas.html',
-        controller: 'resenaCtrl'
+      when('/about', {
+        templateUrl: 'app/Html/about.html',
+        controller: 'aboutCtrl'
       }).
-      when('/logout', {
-        controller: 'logoutCtrl'
+      when('/adminlogged', {
+        templateUrl: 'app/Html/adminlogged.html',
+        controller: 'adminloggedCtrl'
       }).
-      when('/newLogin', {
+      when('/adminuser', {
+        templateUrl: 'app/Html/adminUser.html',
+        controller: 'adminuserCtrl'
+      }).
+      when('/adminingr', {
+        templateUrl: 'app/Html/adminIngr.html',
+        controller: 'adminingrCtrl'
+      }).
+      when('/adminfactura', {
+        templateUrl: 'app/Html/adminfactura.html',
+        controller: 'adminfacturaCtrl'
+      }).
+      when('/adminconsultas', {
+        templateUrl: 'app/Html/adminconsultas.html',
+        controller: 'adminconsultasCtrl'
+      }).
+      /*when('/newLogin', {
         templateUrl: 'app/partials/newLogin.html',
         controller: 'newLoginCtrl'
       }).
