@@ -1,5 +1,5 @@
     <div class="brand">Recopilacion de Restaurantes?</div>
-    <div class="address-bar">Ubicacion de donde es el mapa que trabajamos</div>
+    <div class="address-bar" ng-show="islogin">Usuario ingresado: {{correoLogged}}</div>
 
     <!-- Navigation -->
     <nav class="navbar navbar-default" role="navigation">
@@ -21,27 +21,30 @@
                     <li>
                         <a href="#/index">Inicio</a>
                     </li>
-                    <li>
+                    <li ng-hide="isAdmin">
                         <a href="#/register">Registrarse</a>
                     </li>
-                    <li>
+                    <li ng-hide="islogin">
                         <a href="#/login">Ingresar</a>
                     </li>
-                     <li>
+                     <li ng-show="islogin && !isAdmin">
                         <a href="#/about">Información Personal</a>
                     </li>
 
                     <li ng-show="isAdmin">
-                        <a href="#/about">Ingredientes</a>
+                        <a href="#/adminingr">Ingredientes</a>
                     </li>
                     <li ng-show="isAdmin">
-                        <a href="#/about">Facturas</a>
+                        <a href="#/adminfactura">Facturas</a>
                     </li>
                     <li ng-show="isAdmin">
-                        <a href="#/about">Usuarios</a>
+                        <a href="#/adminuser">Usuarios</a>
                     </li>
                     <li ng-show="isAdmin">
-                        <a href="#/about">Consultas</a>
+                        <a href="#/adminconsultas">Consultas</a>
+                    </li>
+                    <li ng-show="islogin">
+                        <a href="#/logout">Log out</a>
                     </li>
             </div>
             <!-- /.navbar-collapse -->
@@ -65,6 +68,11 @@
                         </h3>
                         <h3> Precio {{plat.precio}}
                         </h3>
+                        <p ng-show="isAdmin"> Ingredientes: 
+                            <span display: inline ng-repeat = "ingr in plat.ingredientes">
+                                {{ingr.nombre}}
+                            </span>
+                        </p>
                     </div>
                 </div>
                 <div class="clearfix"></div>

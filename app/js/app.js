@@ -12,15 +12,6 @@ App.config(['$routeProvider',
   function($routeProvider) {
     $routeProvider.
       when('/index', {
-        resolve:{
-          "check":function($rootScope){
-            if($rootScope.isAdmin){
-              $rootScope.isAdmin = false;
-            }else{
-              $rootScope.isAdmin = false;
-            }
-          }
-        },
         /*resolve:{
           "check":function($rootScope,$cookies){
             if($cookies.get('login')!='')
@@ -69,6 +60,10 @@ App.config(['$routeProvider',
       when('/adminconsultas', {
         templateUrl: 'app/Html/adminconsultas.html',
         controller: 'adminconsultasCtrl'
+      }).
+      when('/logout', {
+        templateUrl: 'app/Html/index.html',
+        controller: 'logoutCtrl'
       }).
       /*when('/newLogin', {
         templateUrl: 'app/partials/newLogin.html',

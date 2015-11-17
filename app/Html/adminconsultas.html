@@ -1,37 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
-
-    <title>Contact - Business Casual - Start Bootstrap Theme</title>
-
-    <!-- Bootstrap Core CSS -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-
-    <!-- Custom CSS -->
-    <link href="css/modified.css" rel="stylesheet">
-
-    <!-- Fonts -->
-    <link href="http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
-    <link href="http://fonts.googleapis.com/css?family=Josefin+Slab:100,300,400,600,700,100italic,300italic,400italic,600italic,700italic" rel="stylesheet" type="text/css">
-
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
-
-</head>
-
-<body>
-
     <div class="brand">Recopilacion de Restaurantes?</div>
     <div class="address-bar">Ubicacion de donde es el mapa que trabajamos</div>
 
@@ -53,16 +19,22 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
                     <li>
-                        <a href="index.html">Inicio</a>
+                        <a href="#/index.html">Inicio</a>
                     </li>
-                    <li>
-                        <a href="register.html">Registrarse</a>
+                    <li ng-show="isAdmin">
+                        <a href="#/adminingr">Ingredientes</a>
                     </li>
-                    <li>
-                        <a href="login.html">Ingresar</a>
+                    <li ng-show="isAdmin">
+                        <a href="#/adminfactura">Facturas</a>
                     </li>
-                     <li>
-                        <a href="about.html">Información Personal</a>
+                    <li ng-show="isAdmin">
+                        <a href="#/adminuser">Usuarios</a>
+                    </li>
+                    <li ng-show="isAdmin">
+                        <a href="#/adminconsultas">Consultas</a>
+                    </li>
+                    <li ng-show="islogin">
+                        <a href="#/logout">Log out</a>
                     </li>
             </div>
             <!-- /.navbar-collapse -->
@@ -86,23 +58,25 @@
                                     <label> Nombre: </label>
                                 </div>
                                 <div class="form-group row-lg-4">
-                                    <label> Fecha: </label>
+                                    <label> Fecha (YYYY-MM-DD): </label>
                                 </div>
                             </div>
                             <div class="form-group col-lg-4">
-                                <div class="form-group row-lg-4" style="margin-bottom: 25px">
-                                    <input type="text" class="form-control">
+                                <div class="form-group row-lg-4" style="margin-bottom: 25px" >
+                                    <input type="text" class="form-control" ng-model ="nombre1">
                                 </div>
                                 <div class="form-group row-lg-4" style="margin-bottom: 25px">
-                                    <input type="text" class="form-control">
+                                    <input type="text" class="form-control" ng-model ="fecha1">
                                 </div>
                             </div>
                         </div>
                         <div class="form-group row-lg-4">
-                              <button type="submit" class="btn btn-default">Realizar Consulta</button>
+                              <button type="submit" class="btn btn-default" ng-click="consulta1()">Realizar Consulta</button>
                         </div>
                         <div class="form-group row-lg-50" style="margin-bottom: 25px">
-                              <label>Informacion iria aqui</label>
+                            <div ng-repeat ="gan in info1">
+                              <label>Correo: {{gan.correoCliente}} fecha: {{gan.fecha}} ganancia: {{gan.gananciaTotal}} </label>
+                          </div>
                         </div>
                     </form>
                 </div>
@@ -119,7 +93,7 @@
                     </h2>
                     <hr>
                     <p>Presione el boton para nuevos platillos</p>
-                    <button type="submit" class="btn btn-default">Generar</button>
+                    <button type="submit" class="btn btn-default" ng-click="consulta2()">Generar</button>
                 </div>
             </div>
         </div>
@@ -151,32 +125,33 @@
                                     </div>
                                     <div class="form-group">
                                             <label for="sel1">Categoria:</label>
-                                            <select class="form-control" id="sel1">
-                                                <option>Categoria 1</option>
-                                                <option>Categoria 2</option>
-                                                <option>Categoria 3</option>
-                                                <option>Categoria 4</option>
-                                            </select>
+                                            <div ng-repeat="cat in categorias">
+                                            <div class="radio">
+                                                 <label><input type="radio" name="optradio" ng-model="$parent.radioValue"
+                                                value="{{cat.nombre}}"> {{cat.nombre}}
+                                            </label>
+                                            </div>
+                                            </div>
                                     </div>
                             </div>
                             <div class="form-group col-lg-4">
                                 <div class="form-group row-lg-4">
-                                    <input type="text" class="form-control">
+                                    <input type="text" class="form-control" ng-model="nombreR">
                                 </div>
                                 <div class="form-group row-lg-4">
-                                    <input type="text" class="form-control">
+                                    <input type="text" class="form-control" ng-model="horaR">
                                 </div>
                                 <div class="form-group row-lg-4">
-                                    <input type="text" class="form-control">
+                                    <input type="text" class="form-control" ng-model="numeroR">
                                 </div>
                                 <div class="form-group row-lg-4">
-                                    <input type="text" class="form-control">
+                                    <input type="text" class="form-control" ng-model="dirR">
                                 </div>
                             </div>
                         </div>
                         <div class="form-group row-lg-12">
                                 <input type="hidden" name="save" value="contact">
-                                <button type="submit" class="btn btn-default">Agregar</button>
+                                <button type="submit" class="btn btn-default" ng-click="consulta3()">Agregar</button>
                             </div>
                     </form>
                 </div>
@@ -199,30 +174,38 @@
                                 <div class="form-group row-lg-4" style="margin-bottom: 25px">
                                     <label> Ingrediente: </label>
                                 </div>
-                                <div class="form-group row-lg-4">
+                                <div class="form-group row-lg-4" style="margin-bottom: 25px">
                                     <label> Restaurante (opcional): </label>
                                 </div>
-                                <div class="form-group row-lg-4">
-                                    <label> Rango de fechas (opcional): </label>
+                                <div class="form-group row-lg-4" style="margin-bottom: 25px">
+                                    <label> Fecha incial (opcional): </label>
+                                </div>
+                                <div class="form-group row-lg-4" style="margin-bottom: 25px">
+                                    <label> Fecha final (opcional): </label>
                                 </div>
                             </div>
                             <div class="form-group col-lg-4">
                                 <div class="form-group row-lg-4" style="margin-bottom: 25px">
-                                    <input type="text" class="form-control">
+                                    <input type="text" class="form-control" ng-model="ingrediente">
                                 </div>
                                 <div class="form-group row-lg-4" style="margin-bottom: 25px">
-                                    <input type="text" class="form-control">
+                                    <input type="text" class="form-control" ng-model="rest2">
                                 </div>
                                 <div class="form-group row-lg-4" style="margin-bottom: 25px">
-                                    <input type="text" class="form-control">
+                                    <input type="text" class="form-control" ng-model="fechainit1">
+                                </div>
+                                <div class="form-group row-lg-4" style="margin-bottom: 25px">
+                                    <input type="text" class="form-control" ng-model="fechafin1">
                                 </div>
                             </div>
                         </div>
                         <div class="form-group row-lg-4">
-                              <button type="submit" class="btn btn-default">Realizar Consulta Extra 1</button>
+                              <button type="submit" class="btn btn-default" ng-click="consulta4()">Realizar Consulta Extra 1</button>
                         </div>
                         <div class="form-group row-lg-50" style="margin-bottom: 25px">
-                              <label>Informacion iria aqui</label>
+                              <div ng-repeat ="gan in info2">
+                              <label>Ingrediente: {{gan.nombreIngrediente}} Platillo: {{gan.nombrePlatillo}} cliente: {{gan.correoCliente}} restaurante: {{gan.restaurante}} </label>
+                          </div>
                         </div>
                     </form>
                 </div>
@@ -243,26 +226,25 @@
                         <div class="row">
                             <div class="form-group col-lg-4">
                                 <div class="form-group row-lg-4">
-                                    <label> Rango de fechas: </label>
+                                    <label> Rango de fechas: (Inicio y Fin respectivamente) </label>
                                 </div>
                             </div>
                             <div class="form-group col-lg-4">
                                 <div class="form-group row-lg-4" style="margin-bottom: 25px">
-                                    <input type="text" class="form-control">
+                                    <input type="text" class="form-control" ng-model="fechainit2">
                                 </div>
                                 <div class="form-group row-lg-4" style="margin-bottom: 25px">
-                                    <input type="text" class="form-control">
-                                </div>
-                                <div class="form-group row-lg-4" style="margin-bottom: 25px">
-                                    <input type="text" class="form-control">
+                                    <input type="text" class="form-control" ng-model = "fechafin2">
                                 </div>
                             </div>
                         </div>
                         <div class="form-group row-lg-4">
-                              <button type="submit" class="btn btn-default">Realizar comparacion</button>
+                              <button type="submit" class="btn btn-default" ng-click="consulta5()">Realizar comparacion</button>
                         </div>
                         <div class="form-group row-lg-50" style="margin-bottom: 25px">
-                              <label>Informacion iria aqui</label>
+                              <div ng-repeat ="gan in info3">
+                              <label>Nombre: {{gan.nombre}} Monto Base: {{gan.montoBase}} Monto Total: {{gan.montoTotal}} </label>
+                          </div>
                         </div>
                     </form>
                 </div>
@@ -282,12 +264,3 @@
         </div>
     </footer>
 
-    <!-- jQuery -->
-    <script src="js/jquery.js"></script>
-
-    <!-- Bootstrap Core JavaScript -->
-    <script src="js/bootstrap.min.js"></script>
-
-</body>
-
-</html>

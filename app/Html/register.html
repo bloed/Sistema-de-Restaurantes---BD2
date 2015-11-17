@@ -21,14 +21,30 @@
                     <li>
                         <a href="#/index">Inicio</a>
                     </li>
-                    <li>
+                    <li ng-hide="isAdmin">
                         <a href="#/register">Registrarse</a>
                     </li>
-                    <li>
+                    <li ng-hide="islogin">
                         <a href="#/login">Ingresar</a>
                     </li>
-                     <li>
+                     <li ng-show="islogin && !isAdmin">
                         <a href="#/about">Información Personal</a>
+                    </li>
+
+                    <li ng-show="isAdmin">
+                        <a href="#/adminingr">Ingredientes</a>
+                    </li>
+                    <li ng-show="isAdmin">
+                        <a href="#/adminfactura">Facturas</a>
+                    </li>
+                    <li ng-show="isAdmin">
+                        <a href="#/adminuser">Usuarios</a>
+                    </li>
+                    <li ng-show="isAdmin">
+                        <a href="#/adminconsultas">Consultas</a>
+                    </li>
+                    <li ng-show="islogin">
+                        <a href="#/logout">Log out</a>
                     </li>
             </div>
             <!-- /.navbar-collapse -->
